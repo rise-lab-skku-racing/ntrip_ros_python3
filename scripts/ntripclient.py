@@ -132,7 +132,8 @@ class ntripclient:
     def __init__(self):
         rospy.init_node('ntripclient', anonymous=True)
 
-        self.rtcm_topic = rospy.get_param('~rtcm_topic', 'rtcm')
+        self.rtcm_topic1 = rospy.get_param('~rtcm_topic1', 'rtcm')
+        self.rtcm_topic2 = rospy.get_param('~rtcm_topic2', 'rtcm')
         self.nmea_topic = rospy.get_param('~nmea_topic', 'nmea')
 
         self.ntrip_server = rospy.get_param('~ntrip_server')
@@ -141,7 +142,8 @@ class ntripclient:
         self.ntrip_stream = rospy.get_param('~ntrip_stream')
         self.nmea_gga = rospy.get_param('~nmea_gga')
 
-        self.pub = rospy.Publisher(self.rtcm_topic, Message, queue_size=10)
+        self.pub = rospy.Publisher(self.rtcm_topic1, Message, queue_size=20)
+        self.pub = rospy.Publisher(self.rtcm_topic2, Message, queue_size=20)
 
         self.connection = None
         self.connection = ntripconnect(self)
