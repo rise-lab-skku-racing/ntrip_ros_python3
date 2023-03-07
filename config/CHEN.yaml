@@ -1,0 +1,2 @@
+# Configuration Settings for CHEN-RTCM31, CHEN-RTCM32
+nmea_gga: $GPGGA,224338.644,3652.695,N,12709.306,E,1,12,1.0,0.0,M,0.0,M,,*64

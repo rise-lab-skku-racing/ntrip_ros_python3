@@ -1,30 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-  <node pkg="ntrip_ros" type="ntripclient.py" name="ntrip_ros31" output="screen">
-		<param name="rtcm_topic1" value="/ublox_gps_rear/rtcm" />
-		<param name="rtcm_topic2" value="/ublox_gps_front/rtcm" />
-		<param name="ntrip_server" value="gnssdata.or.kr:2101" />
-		<param name="ntrip_user" value="tnwhdgks@g.skku.edu" />
-		<param name="ntrip_pass" value="gnss" />
-		<param name="ntrip_stream" value="SUWN-RTCM31"/>
-		<!-- <param name="ntrip_stream" value="CHEN-RTCM31" /> -->
-		<!-- param name="ntrip_stream" value="INCH-RTCM32" -->
-		<param name="nmea_gga" value="$GPGGA,062804.373,3716.559,N,12703.315,E,1,12,1.0,0.0,M,0.0,M,,*6B" />
-		<!-- <param name="nmea_gga" value="$GPGGA,224338.644,3652.695,N,12709.306,E,1,12,1.0,0.0,M,0.0,M,,*64" /> -->
-		<!-- param name="nmea_gga" value="$$GPGGA,130819.605,3725.187,N,12641.194,E,1,12,1.0,0.0,M,0.0,M,,*6E"-->
-	</node>
-	  <node pkg="ntrip_ros" type="ntripclient.py" name="ntrip_ros32" output="screen">
-		<param name="rtcm_topic1" value="/ublox_gps_rear/rtcm" />
-		<param name="rtcm_topic2" value="/ublox_gps_front/rtcm" />
-		<param name="ntrip_server" value="gnssdata.or.kr:2101" />
-		<param name="ntrip_user" value="tnwhdgks@g.skku.edu" />
-		<param name="ntrip_pass" value="gnss" />
-		<param name="ntrip_stream" value="SUWN-RTCM32"/>
-		<!-- <param name="ntrip_stream" value="CHEN-RTCM31" /> -->
-		<!-- param name="ntrip_stream" value="INCH-RTCM32" -->
-		<param name="nmea_gga" value="$GPGGA,062804.373,3716.559,N,12703.315,E,1,12,1.0,0.0,M,0.0,M,,*6B" />
-		<!-- <param name="nmea_gga" value="$GPGGA,224338.644,3652.695,N,12709.306,E,1,12,1.0,0.0,M,0.0,M,,*64" /> -->
-		<!-- param name="nmea_gga" value="$$GPGGA,130819.605,3725.187,N,12641.194,E,1,12,1.0,0.0,M,0.0,M,,*6E"-->
-	</node>
-</launch>
+	<!-- set param -->
+	<!-- base station name -->
+	<arg name="ntrip_stream" value="SUWN" />
+	<arg name="rtcm_topic1" value="/ublox_gps_rear/rtcm" />
+	<arg name="is_two_gps_module" value="True" />
+	<arg name="rtcm_topic2" value="/ublox_gps_front/rtcm" />
 
+	<!-- Do Not Change Below -->
+	<!-- rtcm 31 node -->
+	<node pkg="ntrip_ros" type="ntripclient.py" name="ntrip_ros31"
+		  output="screen" 
+		  respawn="true" 
+		  respawn_delay="30">
+		<param name="rtcm_topic1" value="$(arg rtcm_topic1)" />
+		<param name="is_two_gps_module" value="$(arg is_two_gps_module)" />
+		<param name="rtcm_topic2" value="$(arg rtcm_topic2)" />
+		<param name="ntrip_version" value="31"/>
+		<param name="ntrip_stream" value="$(arg ntrip_stream)-RTCM31"/>
+		<rosparam command="load" 
+				file="$(find ntrip_ros)/config/ID.yaml" />
+		<rosparam command="load" 
+				file="$(find ntrip_ros)/config/$(arg ntrip_stream).yaml" />
+	</node>
+	
+	<!-- rtcm 32 node -->
+	<node pkg="ntrip_ros" type="ntripclient.py" name="ntrip_ros32"
+		  output="screen" 
+		  respawn="true" 
+		  respawn_delay="30">
+		<param name="rtcm_topic1" value="$(arg rtcm_topic1)" />
+		<param name="is_two_gps_module" value="$(arg is_two_gps_module)" />
+		<param name="rtcm_topic2" value="$(arg rtcm_topic2)" />
+		<param name="ntrip_version" value="32"/>
+		<param name="ntrip_stream" value="$(arg ntrip_stream)-RTCM32"/>
+		<rosparam command="load" 
+				file="$(find ntrip_ros)/config/ID.yaml" />
+		<rosparam command="load" 
+				file="$(find ntrip_ros)/config/$(arg ntrip_stream).yaml" />
+	</node>
+
+</launch>

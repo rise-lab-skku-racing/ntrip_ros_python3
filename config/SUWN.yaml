@@ -1,0 +1,2 @@
+# Configuration Settings for SUWN-RTCM31, SUWN-RTCM32
+nmea_gga: $GPGGA,062804.373,3716.559,N,12703.315,E,1,12,1.0,0.0,M,0.0,M,,*6B

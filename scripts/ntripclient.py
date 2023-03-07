@@ -69,7 +69,7 @@ class ntripconnect(Thread):
                 buf = ""
                 rmsg = Message()
                 restart_count = 0
-                print("[Ntrip] Ntrip Connected")
+                print("[Ntrip ", self.ntc.ntrip_version, "] Ntrip Connected")
                 while not self.stop:
                     '''
                     data = response.read(100)
@@ -119,13 +119,13 @@ class ntripconnect(Thread):
                         if response.status != 200: raise Exception("blah")
                         buf = ""
             except:
-                print("[Ntrip] internet connection failed")
+                print("[Ntrip ", self.ntc.ntrip_version, "] internet connection failed")
                 connection.close()        
                 rospy.sleep(1)
                 connection = HTTPConnection(self.ntc.ntrip_server, timeout = 3)
                 continue
 
-        print("Ntrip finished")
+        print("[Ntrip ", self.ntc.ntrip_version, "] finished")
         connection.close()
 
 class ntripclient:
@@ -135,15 +135,16 @@ class ntripclient:
         self.rtcm_topic1 = rospy.get_param('~rtcm_topic1', 'rtcm')
         self.rtcm_topic2 = rospy.get_param('~rtcm_topic2', 'rtcm')
         self.nmea_topic = rospy.get_param('~nmea_topic', 'nmea')
-
+        self.is_two_gps_module = rospy.get_param('~is_two_gps_module')
         self.ntrip_server = rospy.get_param('~ntrip_server')
         self.ntrip_user = rospy.get_param('~ntrip_user')
         self.ntrip_pass = rospy.get_param('~ntrip_pass')
+        self.ntrip_version = rospy.get_param('~ntrip_version')
         self.ntrip_stream = rospy.get_param('~ntrip_stream')
         self.nmea_gga = rospy.get_param('~nmea_gga')
 
         self.pub = rospy.Publisher(self.rtcm_topic1, Message, queue_size=20)
-        self.pub = rospy.Publisher(self.rtcm_topic2, Message, queue_size=20)
+        if self.is_two_gps_module: self.pub = rospy.Publisher(self.rtcm_topic2, Message, queue_size=20)
 
         self.connection = None
         self.connection = ntripconnect(self)
