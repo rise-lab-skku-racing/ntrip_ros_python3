@@ -1,0 +1,2 @@
+# Configuration Settings for CNJU-RTCM31, CNJU-RTCM32
+nmea_gga: $GPGGA,082358.036,3637.619,N,12727.682,E,1,12,1.0,0.0,M,0.0,M,,*6D

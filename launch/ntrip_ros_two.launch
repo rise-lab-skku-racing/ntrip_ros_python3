@@ -3,8 +3,8 @@
 	<!-- set param -->
 	<!-- base station name -->
 	<arg name="ntrip_stream" value="SUWN" />
-	<arg name="rtcm_topic1" value="/ublox_gps/rtcm" />
-	<arg name="is_two_gps_module" value="False" />
+	<arg name="rtcm_topic1" value="/ublox_gps_rear/rtcm" />
+	<arg name="is_two_gps_module" value="True" />
 	<arg name="rtcm_topic2" value="/ublox_gps_front/rtcm" />
 
 	<!-- Do Not Change Below -->
