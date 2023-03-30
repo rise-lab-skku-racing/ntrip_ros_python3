@@ -106,6 +106,7 @@ class ntripconnect(Thread):
                             rmsg.header.seq += 1
                             rmsg.header.stamp = rospy.get_rostime()
                             self.ntc.pub.publish(rmsg)
+                            self.ntc.pub2.publish(rmsg)
                             buf = []
                         # else: print (data)
                     else:
@@ -144,7 +145,7 @@ class ntripclient:
         self.nmea_gga = rospy.get_param('~nmea_gga')
 
         self.pub = rospy.Publisher(self.rtcm_topic1, Message, queue_size=20)
-        if self.is_two_gps_module: self.pub = rospy.Publisher(self.rtcm_topic2, Message, queue_size=20)
+        if self.is_two_gps_module: self.pub2 = rospy.Publisher(self.rtcm_topic2, Message, queue_size=20)
 
         self.connection = None
         self.connection = ntripconnect(self)
