@@ -3,8 +3,7 @@
 	<!-- set param -->
 	<!-- base station name -->
 	<arg name="ntrip_stream" value="SUWN" />
-	<arg name="rtcm_topic1" value="/ublox_gps/rtcm" />
-	<arg name="is_two_gps_module" value="False" />
+	<arg name="rtcm_topic1" value="/ublox_gps_rear/rtcm" />
 	<arg name="rtcm_topic2" value="/ublox_gps_front/rtcm" />
 
 	<!-- Do Not Change Below -->
@@ -14,7 +13,6 @@
 		  respawn="true" 
 		  respawn_delay="30">
 		<param name="rtcm_topic1" value="$(arg rtcm_topic1)" />
-		<param name="is_two_gps_module" value="$(arg is_two_gps_module)" />
 		<param name="rtcm_topic2" value="$(arg rtcm_topic2)" />
 		<param name="ntrip_version" value="31"/>
 		<param name="ntrip_stream" value="$(arg ntrip_stream)-RTCM31"/>
@@ -30,7 +28,6 @@
 		  respawn="true" 
 		  respawn_delay="30">
 		<param name="rtcm_topic1" value="$(arg rtcm_topic1)" />
-		<param name="is_two_gps_module" value="$(arg is_two_gps_module)" />
 		<param name="rtcm_topic2" value="$(arg rtcm_topic2)" />
 		<param name="ntrip_version" value="32"/>
 		<param name="ntrip_stream" value="$(arg ntrip_stream)-RTCM32"/>

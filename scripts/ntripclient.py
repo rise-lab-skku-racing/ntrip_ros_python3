@@ -136,7 +136,6 @@ class ntripclient:
         self.rtcm_topic1 = rospy.get_param('~rtcm_topic1', 'rtcm')
         self.rtcm_topic2 = rospy.get_param('~rtcm_topic2', 'rtcm')
         self.nmea_topic = rospy.get_param('~nmea_topic', 'nmea')
-        self.is_two_gps_module = rospy.get_param('~is_two_gps_module')
         self.ntrip_server = rospy.get_param('~ntrip_server')
         self.ntrip_user = rospy.get_param('~ntrip_user')
         self.ntrip_pass = rospy.get_param('~ntrip_pass')
@@ -145,7 +144,7 @@ class ntripclient:
         self.nmea_gga = rospy.get_param('~nmea_gga')
 
         self.pub = rospy.Publisher(self.rtcm_topic1, Message, queue_size=20)
-        if self.is_two_gps_module: self.pub2 = rospy.Publisher(self.rtcm_topic2, Message, queue_size=20)
+        self.pub2 = rospy.Publisher(self.rtcm_topic2, Message, queue_size=20)
 
         self.connection = None
         self.connection = ntripconnect(self)
