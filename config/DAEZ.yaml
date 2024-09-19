@@ -1,0 +1,4 @@
+# Configuration Settings for DAEZ-RTCM31, DAEZ-RTCM32
+nmea_gga: $GPGGA,053650.344,3621.759,N,12717.483,E,1,12,1.0,0.0,M,0.0,M,,*68
+
+# 수신종료

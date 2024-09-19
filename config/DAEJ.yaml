@@ -1,0 +1,2 @@
+# Configuration Settings for DAEJ-RTCM31, DAEJ-RTCM32
+nmea_gga: $GPGGA,053650.344,3623.966,N,12722.470,E,1,12,1.0,0.0,M,0.0,M,,*62

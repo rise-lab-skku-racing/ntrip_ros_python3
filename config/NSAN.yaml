@@ -1,0 +1,2 @@
+# Configuration Settings for NSAN-RTCM31, NSAN-RTCM32
+nmea_gga: $GPGGA,053650.344,3611.650,N,12706.739,E,1,12,1.0,0.0,M,0.0,M,,*61
